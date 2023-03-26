@@ -1,6 +1,7 @@
 import { useReducer, useRef, useEffect } from "react";
 import { states } from "./reducer/states";
 import reducer from "./reducer";
+import { TodoWrapper } from "./components/TodoWrapper";
 
 const initState = {
   job: "",
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ padding: "0 20px" }}>
+      {/* <div style={{ padding: "0 20px" }}>
         <h3> Todo </h3>
         <input
           ref={inputRef}
@@ -52,7 +53,8 @@ function App() {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
+      <TodoWrapper />
     </div>
   );
 }
