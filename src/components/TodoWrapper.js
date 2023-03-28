@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4, v4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
-uuidv4();
 
 export const TodoWrapper = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    {
+      id: v4,
+      task: "Eat",
+      completed: true,
+      isEditing: false,
+    }
+  ]);
 
   const addTodo = (todo) => {
     setTodos([
