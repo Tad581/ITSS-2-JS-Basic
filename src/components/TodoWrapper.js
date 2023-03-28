@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Todo } from "./Todo";
 import { Done } from "./Done";
 import { TodoForm } from "./TodoForm";
@@ -6,14 +6,14 @@ import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: uuidv4(),
-      task: "Eat",
-      completed: false,
-      isEditing: false,
-    },
-  ]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return [];
+    }
+  });
 
   const addTodo = (todo) => {
     setTodos([
@@ -49,6 +49,10 @@ export const TodoWrapper = () => {
       )
     );
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="TodoWrapper">
